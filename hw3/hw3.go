@@ -58,8 +58,10 @@ func StringUnpacking(line string) (string, error) {
 			i++
 		}
 		if i+1 < runeLen && unicode.IsDigit(runeSlice[i+1]) {
-			if unicode.IsDigit(runeSlice[i+2]) {
-				return "", errors.New("error - only numbers are allowed")
+			if i+2 < runeLen {
+				if unicode.IsDigit(runeSlice[i+2]) {
+					return "", errors.New("error - only numbers are allowed")
+				}
 			}
 			counter, _ = strconv.Atoi(string(runeSlice[i+1]))
 			i++
